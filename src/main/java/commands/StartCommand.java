@@ -21,6 +21,7 @@ public class StartCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         Player p = (Player) sender;
         p.sendMessage(ColourUtils.colour("&4&lADMIN &8| &aAn administrator command was executed."));
+        gm.start();
         return true;
     }
 }
