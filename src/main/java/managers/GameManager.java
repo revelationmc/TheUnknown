@@ -1,13 +1,18 @@
 package managers;
 
-import main.Main;
-import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.TextComponent;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+
+import main.Main;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import utils.ColourUtils;
 
 public class GameManager {
@@ -16,6 +21,9 @@ public class GameManager {
     public GameManager(Main m){
         this.m = m;
     }
+    
+    private HashMap<Player, Integer> level = new HashMap<Player, Integer>();
+    private Set<Player> gamePlayers = new HashSet<Player>();
 
     public void startCount(int time) {
         Bukkit.getScheduler().scheduleSyncRepeatingTask(m, () -> {
@@ -36,8 +44,11 @@ public class GameManager {
         });
     }
 
-    public void checkLevel(Player p) {
-
+    public int checkLevel(Player p) {
+    	if(level.get(p) == null) {
+    		level.put(p, 1);
+    	}
+    	return level.get(p);
     }
 
 }
