@@ -27,6 +27,9 @@ public class SpectatorManager {
 		}
 		spectators.add(p);
 		ColourUtils.titleMaker(p, "&6You have been &c&lELIMINATED!", "", 40, 40, 40);
+		for(Player player : gm.getPlayersAsList(p)) {
+			player.hidePlayer(main, p);
+		}
 		p.setGameMode(GameMode.SPECTATOR);
 		p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ColourUtils.colour("&eYou are now a SPECTATOR.")));
 		

@@ -58,6 +58,10 @@ public class GameManager {
     	}
     	return false;
     }
+    
+    public Set<Player> getPlayersAsList(Player p){
+    	return gamePlayers;
+    }
 
     public void removePlayer(Player p) {
     	if(gamePlayers.contains(p)) {
