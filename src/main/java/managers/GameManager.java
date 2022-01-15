@@ -41,6 +41,7 @@ public class GameManager {
             player.playSound(player.getLocation(), Sound.ENTITY_OCELOT_AMBIENT, 6, 3);
             player.playSound(player.getLocation(), Sound.ENTITY_WITHER_AMBIENT, 5, 3);
             ColourUtils.titleMaker(player, "&cYou have entered", "&4&lThe &c&lUnknown", 40, 40, 40);
+            gamePlayers.add(player);
         });
     }
 
@@ -50,5 +51,18 @@ public class GameManager {
     	}
     	return level.get(p);
     }
+    
+    public boolean checkPlayers(Player p) {
+    	if(gamePlayers.contains(p)) {
+    		return true;
+    	}
+    	return false;
+    }
 
+    public void removePlayer(Player p) {
+    	if(gamePlayers.contains(p)) {
+    		gamePlayers.remove(p);
+    	} 
+    }
+    
 }
