@@ -68,5 +68,16 @@ public class GameManager {
     		gamePlayers.remove(p);
     	} 
     }
+
+    public void stop() {
+        Bukkit.getScheduler().getPendingTasks().clear();
+        Bukkit.getOnlinePlayers().forEach(player -> {
+            ColourUtils.titleMaker(player, "&4GAME OVER", "&eThanks for playing!", 40, 40, 40);
+            gamePlayers.remove(player);
+            if(player.hasPermission("theunknown.admin")){
+                player.sendMessage(ColourUtils.colour("&6&lGAME &8| &eGame stopped."));
+            }
+        });
+    }
     
 }
