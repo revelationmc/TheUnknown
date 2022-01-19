@@ -42,6 +42,7 @@ public class GameManager {
             player.playSound(player.getLocation(), Sound.ENTITY_WITHER_AMBIENT, 5, 3);
             ColourUtils.titleMaker(player, "&cYou have entered", "&4&lThe &c&lUnknown", 40, 40, 40);
             gamePlayers.add(player);
+            player.hidePlayer(m, player);
         });
     }
 
@@ -77,7 +78,6 @@ public class GameManager {
             if(player.hasPermission("theunknown.admin")){
                 player.sendMessage(ColourUtils.colour("&6&lGAME &8| &eGame stopped."));
             }
-            player.hidePlayer(m, player);
         });
     }
     
