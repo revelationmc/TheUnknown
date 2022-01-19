@@ -1,0 +1,7 @@
+name: TheUnknown
+main: main.Main
+version: 1.0
+author: Revelation
+commands:
+  start:
+    permission: "theunknown.start"
