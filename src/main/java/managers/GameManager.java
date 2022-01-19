@@ -42,7 +42,12 @@ public class GameManager {
             player.playSound(player.getLocation(), Sound.ENTITY_WITHER_AMBIENT, 5, 3);
             ColourUtils.titleMaker(player, "&cYou have entered", "&4&lThe &c&lUnknown", 40, 40, 40);
             gamePlayers.add(player);
-            player.hidePlayer(m, player);
+            for(Player p : gamePlayers){
+                if(!(p == player)){
+                    p.hidePlayer(m, player);
+                    player.hidePlayer(m, p);
+                }
+            }
         });
     }
 
