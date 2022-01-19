@@ -77,6 +77,7 @@ public class GameManager {
             if(player.hasPermission("theunknown.admin")){
                 player.sendMessage(ColourUtils.colour("&6&lGAME &8| &eGame stopped."));
             }
+            player.hidePlayer(m, player);
         });
     }
     
