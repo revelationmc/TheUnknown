@@ -1,4 +1,4 @@
-package utils;
+package org.revelation.theunknown.utils;
 
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.entity.Player;

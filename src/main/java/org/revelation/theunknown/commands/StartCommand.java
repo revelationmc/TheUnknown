@@ -6,7 +6,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import utils.ColourUtils;
+import org.revelation.theunknown.utils.ColourUtils;
 
 public class StartCommand implements CommandExecutor {
 

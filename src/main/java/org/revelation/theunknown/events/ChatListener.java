@@ -6,7 +6,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import org.revelation.theunknown.main.Main;
-import utils.ColourUtils;
+import org.revelation.theunknown.utils.ColourUtils;
 
 public class ChatListener implements Listener {
 	
