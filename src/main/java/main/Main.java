@@ -1,22 +1,39 @@
 package main;
 
-import commands.StartCommand;
 import events.JoinListener;
-import managers.GameManager;
-import org.bukkit.Bukkit;
+import io.github.redwallhp.athenagm.AthenaGM;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
 
+    AthenaGM athena;
+
     @Override
     public void onEnable(){
-        Bukkit.getPluginManager().registerEvents(new JoinListener(this), this);
-        Bukkit.getPluginCommand("start").setExecutor(new StartCommand(this, new GameManager(this)));
+        if(checkAthena()){
+            new JoinListener(athena);
+        }
     }
 
     @Override
     public void onDisable(){
 
+    }
+
+    private boolean checkAthena() {
+        Plugin plugin = getServer().getPluginManager().getPlugin("AthenaGM");
+        if (plugin == null || !(plugin instanceof AthenaGM)) {
+            this.setEnabled(false);
+            return false;
+        } else {
+            athena = (AthenaGM) plugin;
+            return true;
+        }
+    }
+
+    public AthenaGM getAthena() {
+        return athena;
     }
 
 }

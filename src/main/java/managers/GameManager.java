@@ -1,89 +1,38 @@
 package managers;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
-
-import org.bukkit.Bukkit;
+import io.github.redwallhp.athenagm.AthenaGM;
+import io.github.redwallhp.athenagm.matches.Match;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import main.Main;
-import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.TextComponent;
-import utils.ColourUtils;
+public class GameManager extends AthenaGM {
 
-public class GameManager {
+    private final Match match;
+    private final AthenaGM plugin = new AthenaGM();
 
-    private Main m;
-    public GameManager(Main m){
-        this.m = m;
-    }
-    
-    private HashMap<Player, Integer> level = new HashMap<Player, Integer>();
-    private Set<Player> gamePlayers = new HashSet<Player>();
-
-    public void startCount(int time) {
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(m, () -> {
-            Bukkit.getOnlinePlayers().forEach(player -> {
-                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ColourUtils.colour("&aGame starting in &e" + time)));
-                player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 7, 1);
-            });
-        }, 0L, (time*20));
+    public GameManager(Match match) {
+        this.match = match;
     }
 
-    public void start() {
-        Bukkit.getOnlinePlayers().forEach(player -> {
+    public void startGame() {
+        match.start(120);
+        match.getAllPlayers().forEach(player -> {
+            for(Player p : match.getAllPlayers()) {
+                if(!(p == player)) {
+                    p.hidePlayer(plugin, player);
+                    player.hidePlayer(plugin, player);
+                }
+            }
             player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, Integer.MAX_VALUE, Integer.MAX_VALUE, true, false));
             player.playSound(player.getLocation(), Sound.ENTITY_GHAST_WARN, 7, 3);
             player.playSound(player.getLocation(), Sound.ENTITY_OCELOT_AMBIENT, 6, 3);
             player.playSound(player.getLocation(), Sound.ENTITY_WITHER_AMBIENT, 5, 3);
-            ColourUtils.titleMaker(player, "&cYou have entered", "&4&lThe &c&lUnknown", 40, 40, 40);
-            gamePlayers.add(player);
-            for(Player p : gamePlayers){
-                if(!(p == player)){
-                    p.hidePlayer(m, player);
-                    player.hidePlayer(m, p);
-                }
-            }
+            player.sendTitle(ChatColor.translateAlternateColorCodes('&', "&cYou have entered"),
+                    ChatColor.translateAlternateColorCodes('&', "&4&lThe &c&lUnknown"), 40, 40, 40);
         });
     }
 
-    public int checkLevel(Player p) {
-    	if(level.get(p) == null) {
-    		level.put(p, 1);
-    	}
-    	return level.get(p);
-    }
-    
-    public boolean checkPlayers(Player p) {
-    	if(gamePlayers.contains(p)) {
-    		return true;
-    	}
-    	return false;
-    }
-    
-    public Set<Player> getPlayersAsList(Player p){
-    	return gamePlayers;
-    }
-
-    public void removePlayer(Player p) {
-    	if(gamePlayers.contains(p)) {
-    		gamePlayers.remove(p);
-    	} 
-    }
-
-    public void stop() {
-        Bukkit.getScheduler().getPendingTasks().clear();
-        Bukkit.getOnlinePlayers().forEach(player -> {
-            ColourUtils.titleMaker(player, "&4GAME OVER", "&eThanks for playing!", 40, 40, 40);
-            gamePlayers.remove(player);
-            if(player.hasPermission("theunknown.admin")){
-                player.sendMessage(ColourUtils.colour("&6&lGAME &8| &eGame stopped."));
-            }
-        });
-    }
-    
 }

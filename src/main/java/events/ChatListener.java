@@ -6,7 +6,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import main.Main;
-import managers.GameManager;
 import utils.ColourUtils;
 
 public class ChatListener implements Listener {
