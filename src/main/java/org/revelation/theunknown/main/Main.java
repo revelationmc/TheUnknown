@@ -1,9 +1,9 @@
-package main;
+package org.revelation.theunknown.main;
 
-import events.JoinListener;
 import io.github.redwallhp.athenagm.AthenaGM;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.revelation.theunknown.events.JoinListener;
 
 public class Main extends JavaPlugin {
 
@@ -11,8 +11,8 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable(){
-        if(checkAthena()){
-            new JoinListener(athena);
+        if(checkAthena()) {
+            new JoinListener(this);
         }
     }
 

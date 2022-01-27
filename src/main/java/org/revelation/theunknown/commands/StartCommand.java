@@ -1,7 +1,7 @@
-package commands;
+package org.revelation.theunknown.commands;
 
-import main.Main;
-import managers.GameManager;
+import org.revelation.theunknown.main.Main;
+import org.revelation.theunknown.managers.GameManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

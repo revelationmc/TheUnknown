@@ -1,11 +1,11 @@
-package events;
+package org.revelation.theunknown.events;
 
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import main.Main;
+import org.revelation.theunknown.main.Main;
 import utils.ColourUtils;
 
 public class ChatListener implements Listener {

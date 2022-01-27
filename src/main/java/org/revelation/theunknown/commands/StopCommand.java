@@ -1,4 +1,4 @@
-package commands;
+package org.revelation.theunknown.commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

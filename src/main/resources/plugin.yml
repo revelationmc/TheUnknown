@@ -1,7 +1,6 @@
 name: TheUnknown
-main: main.Main
+main: org.revelation.theunknown.main.Main
 version: 1.0
 author: Revelation
-commands:
-  start:
-    permission: "theunknown.start"
+depend:
+  - AthenaGM

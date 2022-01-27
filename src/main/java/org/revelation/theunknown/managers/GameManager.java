@@ -1,4 +1,4 @@
-package managers;
+package org.revelation.theunknown.managers;
 
 import io.github.redwallhp.athenagm.AthenaGM;
 import io.github.redwallhp.athenagm.matches.Match;

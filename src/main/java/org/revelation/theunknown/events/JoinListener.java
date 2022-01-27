@@ -1,20 +1,19 @@
-package events;
+package org.revelation.theunknown.events;
 
-import io.github.redwallhp.athenagm.AthenaGM;
-import io.github.redwallhp.athenagm.matches.Match;
-import io.github.redwallhp.athenagm.matches.MatchStartCountdown;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.revelation.theunknown.main.Main;
 
 public class JoinListener implements Listener {
 
-    private Match match;
-    public JoinListener(AthenaGM plugin) {
-        plugin.getServer().getPluginManager().registerEvents(this, plugin);
+    private Main m;
+    public JoinListener(Main m) {
+        this.m = m;
     }
+
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
@@ -23,7 +22,7 @@ public class JoinListener implements Listener {
 
     private void checkCount() {
         if(Bukkit.getOnlinePlayers().size() == 4){
-            match.startCountdown();
+
         } else {
             Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&',
                     "&cGame could not start, requires 4 players."));
